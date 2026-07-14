@@ -41,7 +41,9 @@ Instead of sending raw code to the AI model, the application first analyzes the 
 This structured information enables more accurate and context-aware AI-generated test cases.
 
 ---
-
+## ScreenShots of Project
+<img width="1337" height="842" alt="image" src="https://github.com/user-attachments/assets/52aba9de-e486-4866-925a-eb10dfe509de" />
+---
 # 🏗️ Tech Stack
 
 ## Backend
