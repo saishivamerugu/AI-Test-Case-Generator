@@ -281,7 +281,7 @@ This project demonstrates practical knowledge of:
 
 ---
 
-# 🎯 Resume Highlights
+# 🎯 Highlights
 
 - Developed an AI-powered test case generation platform using Spring AI and JavaParser.
 - Automated the creation of JUnit, Mockito, integration, and edge-case tests.
