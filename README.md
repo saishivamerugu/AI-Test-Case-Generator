@@ -57,11 +57,10 @@ This project is designed as a portfolio-quality enterprise application following
 
 ## Tools
 
-* IntelliJ IDEA
+* Spring Tools Suite(STS)
 * Git
 * GitHub
-* Docker (Upcoming)
-* AWS EC2 (Upcoming)
+
 
 ---
 
@@ -300,7 +299,6 @@ http://localhost:8080
 * Syntax Highlighting
 * Export as Java Files
 * PDF Reports
-* Multi-Language Support
 * Authentication
 * Project Workspace
 
