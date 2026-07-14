@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Test Case Generator</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+body{
+    background:#0b1120;
+    color:#fff;
+    font-family:Segoe UI,Arial,sans-serif;
+}
+.container-fluid{max-width:1500px;padding:30px;}
+.card-main{
+    background:#111827;
+    border:1px solid #2b3648;
+    border-radius:18px;
+    box-shadow:0 0 35px rgba(59,130,246,.15);
+}
+.header{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    padding:28px;
+    border-radius:18px 18px 0 0;
+}
+.editor,.output{
+    background:#020617;
+    border:1px solid #334155;
+    border-radius:12px;
+}
+textarea{
+    width:100%;
+    height:560px;
+    resize:none;
+    background:#020617;
+    color:#e2e8f0;
+    border:none;
+    padding:18px;
+    font-family:Consolas,monospace;
+}
+textarea:focus{outline:none;}
+.output{
+    height:560px;
+    overflow:auto;
+    padding:18px;
+    white-space:pre-wrap;
+    font-family:Consolas,monospace;
+}
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:15px;
+}
+.feature-btn{
+    height:58px;
+    font-weight:700;
+}
+.action-bar{display:flex;gap:12px;flex-wrap:wrap;}
+#spinner{display:none;}
+.footer{color:#94a3b8;font-size:13px;}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid">
+<div class="card-main">
+
+<div class="header text-center">
+<h2><i class="fa-solid fa-robot"></i> TestPilot AI </h2>
+<p class="mb-0">Your AI-powered Java testing companion</p>
+</div>
+
+<div class="p-4">
+
+<form id="generatorForm" method="post">
+
+<div class="row g-4">
+
+<div class="col-lg-6">
+
+<h5><i class="fa-brands fa-java"></i> Java Source Code</h5>
+
+<div class="editor">
+<textarea id="javaCode" name="code"
+placeholder="Paste your Java class here..." required></textarea>
+</div>
+
+</div>
+
+<div class="col-lg-6">
+
+<h5><i class="fa-solid fa-terminal"></i> AI Output</h5>
+
+<div id="outputPanel" class="output">
+Click Analyze to start...
+</div>
+
+</div>
+
+</div>
+
+<div class="text-center my-4">
+
+<button id="analyzeBtn" type="button"
+class="btn btn-primary btn-lg px-5">
+<i class="fa-solid fa-magnifying-glass"></i>
+Analyze Code
+</button>
+
+</div>
+
+<div class="feature-grid">
+
+<button class="btn btn-success feature-btn"
+type="submit"
+formaction="/generate/unit-tests"
+disabled>
+🧪 Unit Tests
+</button>
+
+<button class="btn btn-warning feature-btn"
+type="submit"
+formaction="/generate/mockito-tests"
+disabled>
+⚡ Mockito Tests
+</button>
+
+<button class="btn btn-info feature-btn"
+type="submit"
+formaction="/generate/integration-tests"
+disabled>
+🌐 Integration Tests
+</button>
+
+<button class="btn btn-danger feature-btn"
+type="submit"
+formaction="/generate/security-analysis"
+disabled>
+🛡 Security Analysis
+</button>
+
+<button class="btn btn-secondary feature-btn"
+type="submit"
+formaction="/generate/refactoring"
+disabled>
+♻ Refactoring
+</button>
+
+<button class="btn btn-primary feature-btn"
+type="submit"
+formaction="/generate/explanation"
+disabled>
+📖 Explain Code
+</button>
+
+<button class="btn btn-dark feature-btn"
+type="submit"
+formaction="/generate/coverage"
+disabled>
+📈 Coverage Suggestions
+</button>
+
+</div>
+
+<hr class="my-4">
+
+<div class="action-bar">
+
+<button type="button" class="btn btn-outline-light" onclick="copyOutput()">
+<i class="fa-solid fa-copy"></i> Copy
+</button>
+
+<button type="button" class="btn btn-outline-success" onclick="downloadOutput()">
+<i class="fa-solid fa-download"></i> Download
+</button>
+
+<button type="button" class="btn btn-outline-danger" onclick="clearOutput()">
+<i class="fa-solid fa-trash"></i> Clear
+</button>
+
+<div id="spinner" class="spinner-border text-info"></div>
+
+</div>
+
+<hr>
+
+<div class="footer text-center">
+• Java • Spring Boot 3.5 • Spring AI • Gemini 
+</div>
+
+</form>
+
+</div>
+
+</div>
+</div>
+
+<script>
+const analyze=document.getElementById("analyzeBtn");
+const buttons=document.querySelectorAll(".feature-btn");
+const output=document.getElementById("outputPanel");
+const spinner=document.getElementById("spinner");
+
+analyze.addEventListener("click",function(){
+
+    const code=document.getElementById("javaCode").value.trim();
+
+    if(code===""){
+        alert("Please paste Java code first.");
+        return;
+    }
+
+    spinner.style.display="inline-block";
+
+    setTimeout(function(){
+
+        spinner.style.display="none";
+
+        buttons.forEach(function(btn){
+            btn.disabled=false;
+        });
+
+        output.textContent=
+"✔ TestPilot analyzed the code successfully...\n\nSelect any feature below to generate AI output.";
+
+    },800);
+
+});
+
+function copyOutput(){
+    navigator.clipboard.writeText(output.innerText);
+    alert("Copied.");
+}
+
+function clearOutput(){
+    output.innerText="";
+    document.getElementById("javaCode").value="";
+}
+
+function downloadOutput(){
+    const blob=new Blob([output.innerText],{type:"text/plain"});
+    const a=document.createElement("a");
+    a.href=URL.createObjectURL(blob);
+    a.download="AI_Output.txt";
+    a.click();
+}
+</script>
+
+</body>
+</html>

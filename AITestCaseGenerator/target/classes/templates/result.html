@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Generated Result</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+
+        body{
+            background:#0f172a;
+            color:#f8fafc;
+            font-family:Segoe UI,Arial,sans-serif;
+        }
+
+        .container-fluid{
+            max-width:1500px;
+            margin-top:30px;
+            margin-bottom:30px;
+        }
+
+        .glass-card{
+            background:#1e293b;
+            border:1px solid #334155;
+            border-radius:15px;
+            box-shadow:0 0 25px rgba(0,0,0,.35);
+        }
+
+        .header{
+            background:linear-gradient(90deg,#2563eb,#7c3aed);
+            border-radius:15px 15px 0 0;
+            padding:25px;
+        }
+
+        pre{
+
+            background:#020617;
+            color:#e2e8f0;
+
+            border:1px solid #475569;
+            border-radius:10px;
+
+            padding:20px;
+
+            height:650px;
+
+            overflow:auto;
+
+            white-space:pre-wrap;
+            word-wrap:break-word;
+
+            font-family:Consolas,monospace;
+            font-size:14px;
+
+        }
+
+        .toolbar{
+
+            display:flex;
+            gap:12px;
+            flex-wrap:wrap;
+
+        }
+
+        .footer{
+
+            color:#94a3b8;
+            font-size:14px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+    <div class="glass-card">
+
+        <div class="header text-center">
+
+            <h2>
+
+                <i class="fa-solid fa-robot"></i>
+
+                AI Test Case Generator
+
+            </h2>
+
+            <p class="mb-0">
+
+                Generated AI Response
+
+            </p>
+
+        </div>
+
+        <div class="p-4">
+
+            <h4 class="mb-3">
+
+                <i class="fa-solid fa-file-code"></i>
+
+                Generated Output
+
+            </h4>
+
+            <pre id="generatedContent"
+                 th:text="${response.generatedContent}">
+            </pre>
+
+            <hr class="my-4">
+
+            <div class="toolbar">
+
+                <button
+                        class="btn btn-primary"
+                        onclick="copyOutput()">
+
+                    <i class="fa-solid fa-copy"></i>
+
+                    Copy
+
+                </button>
+
+                <button
+                        class="btn btn-success"
+                        onclick="downloadOutput()">
+
+                    <i class="fa-solid fa-download"></i>
+
+                    Download
+
+                </button>
+
+                <button
+                        class="btn btn-danger"
+                        onclick="clearOutput()">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Clear
+
+                </button>
+
+                <a href="/"
+                   class="btn btn-secondary">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Back
+
+                </a>
+
+            </div>
+
+            <hr>
+
+            <div class="footer text-center">
+
+                Generated using Spring Boot • Spring AI • Google Gemini
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    function copyOutput(){
+
+        const text = document.getElementById("generatedContent").innerText;
+
+        navigator.clipboard.writeText(text);
+
+        alert("Copied Successfully");
+
+    }
+
+    function clearOutput(){
+
+        document.getElementById("generatedContent").innerText = "";
+
+    }
+
+    function downloadOutput(){
+
+        const text = document.getElementById("generatedContent").innerText;
+
+        const blob = new Blob([text], {type: "text/plain"});
+
+        const link = document.createElement("a");
+
+        link.href = URL.createObjectURL(blob);
+
+        link.download = "generated-output.txt";
+
+        link.click();
+
+        URL.revokeObjectURL(link.href);
+
+    }
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
