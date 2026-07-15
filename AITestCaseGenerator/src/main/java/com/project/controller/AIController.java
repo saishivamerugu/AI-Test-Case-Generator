@@ -38,78 +38,41 @@ public class AIController {
 
     @PostMapping("/generate/integration-tests")
     public String generateIntegrationTests(@Valid CodeRequest codeRequest, BindingResult bindingResult, Model model) {
-
         if (bindingResult.hasErrors()) return "index";
-        
-
         AIResponse response = aiService.generateIntegrationTests(codeRequest.getCode());
-
         model.addAttribute("response", response);
-
         return "result";
     }
 
     @PostMapping("/generate/security-analysis")
-    public String generateSecurityAnalysis(@Valid CodeRequest codeRequest,
-                                           BindingResult bindingResult,
-                                           Model model) {
-
-        if (bindingResult.hasErrors()) {
-            return "index";
-        }
-
+    public String generateSecurityAnalysis(@Valid CodeRequest codeRequest, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) return "index";
         AIResponse response = aiService.generateSecurityAnalysis(codeRequest.getCode());
-
         model.addAttribute("response", response);
-
         return "result";
     }
 
     @PostMapping("/generate/refactoring")
-    public String generateRefactoringSuggestions(@Valid CodeRequest codeRequest,
-                                                 BindingResult bindingResult,
-                                                 Model model) {
-
-        if (bindingResult.hasErrors()) {
-            return "index";
-        }
-
+    public String generateRefactoringSuggestions(@Valid CodeRequest codeRequest, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors())  return "index";
         AIResponse response = aiService.generateRefactoringSuggestions(codeRequest.getCode());
-
         model.addAttribute("response", response);
-
         return "result";
     }
 
     @PostMapping("/generate/explanation")
-    public String explainCode(@Valid CodeRequest codeRequest,
-                              BindingResult bindingResult,
-                              Model model) {
-
-        if (bindingResult.hasErrors()) {
-            return "index";
-        }
-
+    public String explainCode(@Valid CodeRequest codeRequest, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors())  return "index";
         AIResponse response = aiService.explainCode(codeRequest.getCode());
-
         model.addAttribute("response", response);
-
         return "result";
     }
 
     @PostMapping("/generate/coverage")
-    public String generateCoverageSuggestions(@Valid CodeRequest codeRequest,
-                                              BindingResult bindingResult,
-                                              Model model) {
-
-        if (bindingResult.hasErrors()) {
-            return "index";
-        }
-
+    public String generateCoverageSuggestions(@Valid CodeRequest codeRequest, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) return "index";
         AIResponse response = aiService.generateCoverageSuggestions(codeRequest.getCode());
-
         model.addAttribute("response", response);
-
         return "result";
     }
 }
