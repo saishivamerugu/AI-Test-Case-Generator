@@ -12,18 +12,14 @@ public class RefactoringService {
     private final PromptBuilderService promptBuilderService;
     private final AIClientService aiClientService;
 
-    public RefactoringService(PromptBuilderService promptBuilderService,
-                              AIClientService aiClientService) {
+    public RefactoringService(PromptBuilderService promptBuilderService, AIClientService aiClientService) {
         this.promptBuilderService = promptBuilderService;
         this.aiClientService = aiClientService;
     }
 
     public AIResponse generate(String javaCode) {
-
         String prompt = promptBuilderService.buildRefactoringPrompt(javaCode);
-
         String response = aiClientService.askAI(prompt);
-
         return new AIResponse(response);
     }
 }
