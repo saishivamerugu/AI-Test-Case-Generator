@@ -12,18 +12,14 @@ public class UnitTestService {
     private final PromptBuilderService promptBuilderService;
     private final AIClientService aiClientService;
 
-    public UnitTestService(PromptBuilderService promptBuilderService,
-                           AIClientService aiClientService) {
+    public UnitTestService(PromptBuilderService promptBuilderService, AIClientService aiClientService) {
         this.promptBuilderService = promptBuilderService;
         this.aiClientService = aiClientService;
     }
 
     public AIResponse generate(String javaCode) {
-
         String prompt = promptBuilderService.buildUnitTestPrompt(javaCode);
-
         String response = aiClientService.askAI(prompt);
-
         return new AIResponse(response);
     }
 }
