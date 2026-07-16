@@ -36,83 +36,47 @@ public class JavaParserService {
         return analysis;
     }
 
-    private void extractPackage(CompilationUnit compilationUnit,
-                                CodeAnalysis analysis) {
+    private void extractPackage(CompilationUnit compilationUnit,  CodeAnalysis analysis) {
 
         Optional<String> packageName = compilationUnit
                 .getPackageDeclaration()
                 .map(packageDeclaration -> packageDeclaration.getNameAsString());
-
         analysis.setPackageName(packageName.orElse("Default Package"));
-
     }
 
-    private void extractClass(CompilationUnit compilationUnit,
-                              CodeAnalysis analysis) {
-
-        Optional<ClassOrInterfaceDeclaration> classDeclaration =
-                compilationUnit.findFirst(ClassOrInterfaceDeclaration.class);
-
-        classDeclaration.ifPresent(value ->
-                analysis.setClassName(value.getNameAsString()));
-
+    private void extractClass(CompilationUnit compilationUnit, CodeAnalysis analysis) {
+        Optional<ClassOrInterfaceDeclaration> classDeclaration = compilationUnit.findFirst(ClassOrInterfaceDeclaration.class);
+        classDeclaration.ifPresent(value -> analysis.setClassName(value.getNameAsString()));
     }
 
-    private void extractImports(CompilationUnit compilationUnit,
-                                CodeAnalysis analysis) {
-
+    private void extractImports(CompilationUnit compilationUnit, CodeAnalysis analysis) {
         for (ImportDeclaration importDeclaration : compilationUnit.getImports()) {
-
             analysis.getImports().add(importDeclaration.getNameAsString());
-
         }
-
     }
 
-    private void extractClassAnnotations(CompilationUnit compilationUnit,
-                                         CodeAnalysis analysis) {
-
-        Optional<ClassOrInterfaceDeclaration> classDeclaration =
-                compilationUnit.findFirst(ClassOrInterfaceDeclaration.class);
+    private void extractClassAnnotations(CompilationUnit compilationUnit, CodeAnalysis analysis) {
+        Optional<ClassOrInterfaceDeclaration> classDeclaration = compilationUnit.findFirst(ClassOrInterfaceDeclaration.class);
 
         if (classDeclaration.isPresent()) {
-
             for (AnnotationExpr annotation : classDeclaration.get().getAnnotations()) {
-
-                analysis.getClassAnnotations()
-                        .add(annotation.getNameAsString());
-
+                analysis.getClassAnnotations().add(annotation.getNameAsString());
             }
-
         }
-
     }
 
-    private void extractMethods(CompilationUnit compilationUnit,
-                                CodeAnalysis analysis) {
-
+    private void extractMethods(CompilationUnit compilationUnit, CodeAnalysis analysis) {
         for (MethodDeclaration method : compilationUnit.findAll(MethodDeclaration.class)) {
-
             MethodMetadata methodMetadata = new MethodMetadata();
-
             methodMetadata.setMethodName(method.getNameAsString());
-
             methodMetadata.setReturnType(method.getType().asString());
-
             for (Parameter parameter : method.getParameters()) {
-
-                methodMetadata.getParameters().add(
-                        parameter.getTypeAsString() + " " + parameter.getNameAsString());
-
+                methodMetadata.getParameters().add(parameter.getTypeAsString() + " " + parameter.getNameAsString());
             }
 
             for (AnnotationExpr annotation : method.getAnnotations()) {
-
-                methodMetadata.getAnnotations()
-                        .add(annotation.getNameAsString());
-
+                methodMetadata.getAnnotations().add(annotation.getNameAsString());
             }
-
             analysis.getMethods().add(methodMetadata);
 
         }
