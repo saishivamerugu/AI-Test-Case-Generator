@@ -13,11 +13,6 @@ public class AIClientService {
     }
 
     public String askAI(String prompt) {
-
-        return chatClient
-                .prompt()
-                .user(prompt)
-                .call()
-                .content();
+        return chatClient.prompt().user(prompt).call().content();
     }
 }
