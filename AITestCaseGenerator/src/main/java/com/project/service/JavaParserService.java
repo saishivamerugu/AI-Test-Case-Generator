@@ -38,8 +38,7 @@ public class JavaParserService {
 
     private void extractPackage(CompilationUnit compilationUnit,  CodeAnalysis analysis) {
 
-        Optional<String> packageName = compilationUnit
-                .getPackageDeclaration()
+        Optional<String> packageName = compilationUnit.getPackageDeclaration()
                 .map(packageDeclaration -> packageDeclaration.getNameAsString());
         analysis.setPackageName(packageName.orElse("Default Package"));
     }
@@ -57,7 +56,6 @@ public class JavaParserService {
 
     private void extractClassAnnotations(CompilationUnit compilationUnit, CodeAnalysis analysis) {
         Optional<ClassOrInterfaceDeclaration> classDeclaration = compilationUnit.findFirst(ClassOrInterfaceDeclaration.class);
-
         if (classDeclaration.isPresent()) {
             for (AnnotationExpr annotation : classDeclaration.get().getAnnotations()) {
                 analysis.getClassAnnotations().add(annotation.getNameAsString());
@@ -73,14 +71,11 @@ public class JavaParserService {
             for (Parameter parameter : method.getParameters()) {
                 methodMetadata.getParameters().add(parameter.getTypeAsString() + " " + parameter.getNameAsString());
             }
-
             for (AnnotationExpr annotation : method.getAnnotations()) {
                 methodMetadata.getAnnotations().add(annotation.getNameAsString());
             }
             analysis.getMethods().add(methodMetadata);
-
         }
-
     }
 
 }
