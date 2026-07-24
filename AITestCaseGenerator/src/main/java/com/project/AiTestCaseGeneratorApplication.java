@@ -9,5 +9,4 @@ public class AiTestCaseGeneratorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AiTestCaseGeneratorApplication.class, args);
 	}
-
 }
