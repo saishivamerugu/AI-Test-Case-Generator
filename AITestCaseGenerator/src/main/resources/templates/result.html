@@ -70,66 +70,30 @@
         }
 
         .footer{
-
             color:#94a3b8;
             font-size:14px;
-
         }
 
     </style>
-
 </head>
 
 <body>
-
 <div class="container-fluid">
-
     <div class="glass-card">
-
         <div class="header text-center">
-
-            <h2>
-
-                <i class="fa-solid fa-robot"></i>
-
-                AI Test Case Generator
-
-            </h2>
-
-            <p class="mb-0">
-
-                Generated AI Response
-
-            </p>
-
+            <h2><i class="fa-solid fa-robot"></i> AI Test Case Generator </h2>
+            <p class="mb-0"> Generated AI Response </p>
         </div>
 
-        <div class="p-4">
+        <div class="p-4"><h4 class="mb-3"><i class="fa-solid fa-file-code"></i>Generated Output</h4>
 
-            <h4 class="mb-3">
-
-                <i class="fa-solid fa-file-code"></i>
-
-                Generated Output
-
-            </h4>
-
-            <pre id="generatedContent"
-                 th:text="${response.generatedContent}">
-            </pre>
-
+            <pre id="generatedContent" th:text="${response.generatedContent}"> </pre>
             <hr class="my-4">
 
             <div class="toolbar">
 
-                <button
-                        class="btn btn-primary"
-                        onclick="copyOutput()">
-
-                    <i class="fa-solid fa-copy"></i>
-
-                    Copy
-
+                <button class="btn btn-primary" onclick="copyOutput()">
+                    <i class="fa-solid fa-copy"></i>Copy
                 </button>
 
                 <button
