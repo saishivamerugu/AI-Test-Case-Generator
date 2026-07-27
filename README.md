@@ -1,4 +1,4 @@
-# 🤖 AI Test Case Generator
+# AI Test Case Generator
 
 An AI-powered Java Developer Assistant built with **Java 17**, **Spring Boot 3.5**, **Spring AI**, and **Google Gemini** that analyzes Java source code and generates production-ready testing artifacts and code insights.
 
