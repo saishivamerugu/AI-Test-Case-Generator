@@ -43,7 +43,6 @@
 
             background:#020617;
             color:#e2e8f0;
-
             border:1px solid #475569;
             border-radius:10px;
 
@@ -91,74 +90,39 @@
             <hr class="my-4">
 
             <div class="toolbar">
-
                 <button class="btn btn-primary" onclick="copyOutput()">
                     <i class="fa-solid fa-copy"></i>Copy
                 </button>
-
-                <button
-                        class="btn btn-success"
-                        onclick="downloadOutput()">
-
-                    <i class="fa-solid fa-download"></i>
-
-                    Download
-
-                </button>
-
+                <button class="btn btn-success" onclick="downloadOutput()"> <i class="fa-solid fa-download"></i> Download </button>
                 <button class="btn btn-danger"onclick="clearOutput()"><i class="fa-solid fa-trash"></i> Clear </button>
                 <a href="/" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Back </a>
-
             </div>
-
             <hr>
-
-            <div class="footer text-center">
-
-                Generated using Spring Boot • Spring AI • Google Gemini
-
-            </div>
-
+            <div class="footer text-center"> Generated using Spring Boot • Spring AI • Google Gemini </div>
         </div>
-
     </div>
-
 </div>
 
 <script>
 
     function copyOutput(){
-
         const text = document.getElementById("generatedContent").innerText;
-
         navigator.clipboard.writeText(text);
-
         alert("Copied Successfully");
-
     }
 
     function clearOutput(){
-
         document.getElementById("generatedContent").innerText = "";
-
     }
 
     function downloadOutput(){
-
         const text = document.getElementById("generatedContent").innerText;
-
         const blob = new Blob([text], {type: "text/plain"});
-
         const link = document.createElement("a");
-
         link.href = URL.createObjectURL(blob);
-
         link.download = "generated-output.txt";
-
         link.click();
-
         URL.revokeObjectURL(link.href);
-
     }
 
 </script>
