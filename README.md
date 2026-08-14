@@ -37,7 +37,7 @@ This project is designed as a portfolio-quality enterprise application following
 ## Backend
 
 * Java 17
-* Spring Boot 3.5.x
+* Spring Boot 3.5.x 
 * Spring AI
 * Google Gemini
 * Maven
@@ -51,12 +51,10 @@ This project is designed as a portfolio-quality enterprise application following
 * JavaScript
 
 ## AI
-
 * Google Gemini
 * Spring AI Google GenAI Starter
 
 ## Tools
-
 * Spring Tools Suite(STS)
 * Git
 * GitHub
