@@ -67,5 +67,4 @@ public class CodeAnalysis {
     public void setMethods(List<MethodMetadata> methods) {
         this.methods = methods;
     }
-
 }
