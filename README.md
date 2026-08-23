@@ -6,7 +6,7 @@ This project is designed as a portfolio-quality enterprise application following
 
 ---
 
-# 🖥️ Application Screenshots
+# 🖥️ Application Screenshots 
 <img width="1092" height="867" alt="image" src="https://github.com/user-attachments/assets/e92e3249-0d23-4dcd-8e99-beacff8077d5" />
 
 ---
