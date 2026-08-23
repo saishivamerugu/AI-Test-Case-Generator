@@ -17,7 +17,7 @@ This project is designed as a portfolio-quality enterprise application following
    
 ##  Features
 
-* Generate JUnit 5 Unit Tests
+* Generate JUnit 5 Unit Tests 
 * Generate Mockito Tests
 * Generate Integration Tests
 * Security Analysis
