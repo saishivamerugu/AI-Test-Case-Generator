@@ -13,7 +13,7 @@ This project is designed as a portfolio-quality enterprise application following
 <img width="1267" height="840" alt="image" src="https://github.com/user-attachments/assets/15e963d0-480b-4af2-9501-c9cc8dbf74ad" />
  
 ---
-# 🚀 Features
+# Features
    
 ##  Features
 
